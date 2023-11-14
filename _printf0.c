@@ -1,99 +1,97 @@
 #include "main.h"
 
 /**
- *printin_char - prints a char
- *@agu: list of arguements
- *@buf: buffer array to handle char print
- *@flgs: calculate active flags
- *@wid: Width
- *@prs: specification of precision
- *@size: size specifier
+ * create_char - appends a character to the string buffer
+ * @type: arguments list
+ * @buffer: string buffer to store the result
+ * @spec:  pointer to a format specifier
  *
- * Return: number of chars printed
+ * Return: 1, the character appended to the string buffer
  */
-int printin_char(va_list agu, char buf[], int flgs, int wid, int prs, int size)
+int create_char(const format_specifier *spec, va_list type,
+				string_buffer *buffer)
 {
-	char c = va_arg(agu, int);
+	int characters_added;
+	size_t initial_length;
+	char ch = va_arg(type, int);
 
-	return (handle_write_char(c, buf, flgs, wid, prs, size));
-}
+	initial_length = buffer->length;
 
-
-/**
-*printin_string - this function prints a string
-*@agu: list of arguements
-*@buf: buffer array to handle char print
-*@flgs: calculate active flags
-*@wid: Width
-*@prs: specification of precision
-*@size: size specifier
-*
-*Return: numbers of chars printed
-*/
-
-int printin_string(va_list agu, char buf[],
-	int flgs, int wid, int prs, int size)
-{
-	int len = 0, i;
-	char *str + va_arg(agu, char*);
-
-	UNUSED(buf)
-	UNUSED(flgs)
-	UNUSED(wid)
-	UNUSED(prs)
-	UNUSED(size)
-	if (str == NULL)
-}
-{
-	str = "(null)";
-	if (prs >= 6)
-		str = "  ";
-}
-{
-	while (str[len] != '\0')
-		len++;
-
-	if (prs >= 0 && prs < len)
-		len = prs;
-
-	if (wid > len)
-}
-{
-	if (flgs & F_MINUS)
-}
+	/* handle space padding before the character */
+	if (spec->width && !spec->minus_flag)
 	{
-		write(1, &str[0], len);
-		for (i = wid - len; i > 0; i--)
-			write(1, " ", 1);
-		return (wid);
+		handle_width((format_specifier *)spec, buffer, 1);
 	}
-{
-	return (write(1, str, len));
-}
+	append_char(buffer, ch);
+	/* handle the space padding after character */
+	if (spec->minus_flag)
+	{
+		handle_width((format_specifier *)spec, buffer, 1);
+	}
 
+	characters_added = buffer->length - initial_length;
+	return (characters_added);
+}
 
 
 /**
-*printin_percent - prints a percentage
-*@agu: list of arguements
-*@buf: buffer array to handle char print
-*@flgs: calculate active flags
-*@wid: Width
-*@prs: specification of precision
-*@size: size specifier
-*
-*Return: numbers of chars printed
-*/
-
-int printin_percent(va_list agu, char buf[],
-	int flgs, int wid, int prs, int size)
+ * create_string - appends a string to the string buffer
+ * @spec: format specifier information
+ * @type: the arguments list
+ * @buffer: the string buffer to store the result
+ *
+ * Return: the number of characters appended to the string @buffer
+ */
+int create_string(const format_specifier *spec, va_list type,
+				  string_buffer *buffer)
 {
-	UNUSED(agu);
-	UNUSED(buf);
-	UNUSED(flgs);
-	UNUSED(wid);
-	UNUSED(prs);
-	UNUSED(size);
-	return (write(1, "%%", 1));
-}
+	char *str = va_arg(type, char *);
+	int characters_added, len, i;
+	size_t initial_length;
+	format_specifier *tmp_spec = (format_specifier *)spec;
 
+	initial_length = buffer->length;
+
+	if (str)
+	{
+		len = _strlen(str);
+		if (spec->width && !spec->minus_flag && !spec->precision)
+			handle_width(tmp_spec, buffer, len);
+		if (spec->precision)
+		{
+			len = (spec->precision > len) ? len : spec->precision;
+			/* check for width (initial) when precision is also given */
+			if (spec->width && !spec->minus_flag)
+				handle_width(tmp_spec, buffer, len);
+			for (i = 0; i < len; i++)
+				append_char(buffer, str[i]); /* handle string precision */
+		}
+		if (str && !spec->precision)
+			append_string(buffer, str); /* append the string without precision */
+
+		if (spec->minus_flag)
+			handle_width(tmp_spec, buffer, len);
+	}
+	else
+		append_string(buffer, "(null)");
+
+	characters_added = buffer->length - initial_length;
+	return (characters_added)
+
+
+/**
+ * create_percent - appends the percentage to the string buffer
+ * @type: arguments list
+ * @buffer: string buffer to store the result
+ * @spec:  pointer to a format specifier
+ *
+ * Return: Returns the number 1, indicating that
+ * a single percent character '%' has been appended to the string buffer
+ */
+int create_percent(__attribute__((unused)) const format_specifier *spec,
+				   __attribute__((unused)) va_list type, string_buffer *buffer)
+{
+	append_char(buffer, '%');
+
+	return (1);
+}

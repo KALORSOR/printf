@@ -1,48 +1,25 @@
 #include "main.h"
 
 /**
- * printin_binary - prints an unsigned number
- * @agu: list of arguments
- * @buf: buffer array to handle print
- * @flgs: calculates active flags
- * @wid: Width
- * @prs: precision specification
- * @size: size specifier
+ * create_binary - convert and append an integer in binary format to the string
+ * buffer
+ * @spec: format specifier information (unused)
+ * @args: arguments list
+ * @buffer: string buffer to store the result
  *
- * Return: numbers of chars printed
+ * Return: the number of characters appended to the string buffer
  */
-
-int printin_binary(va_list agu, char buf[],
-	int flgs, int wid, int prs, int size)
+int create_binary(__attribute__((unused)) const format_specifier *spec,
+				  va_list args, string_buffer *buffer)
 {
-unsigned int n, m, i, sum;
-	unsigned int a[32];
-	int count;
+	char result[65];
+	int characters_added;
+	unsigned int n = va_arg(args, unsigned int);
+	size_t initial_length = buffer->length;
 
-	UNUSED(buf);
-	UNUSED(flgs);
-	UNUSED(wid);
-	UNUSED(prs);
-	UNUSED(size);
+	utob(n, result, BIN);
+	append_string(buffer, result);
 
-	n = va_arg(agu, unsigned int);
-	m = 2147483648; /* (2 ^ 31) */
-	a[0] = n / m;
-	for (i = 1; i < 32; i++)
-	{
-		m /= 2;
-		a[i] = (n / m) % 2;
-	}
-	for (i = 0, sum = 0, count = 0; i < 32; i++)
-	{
-		sum += a[i];
-		if (sum || i == 31)
-		{
-			char z = '0' + a[i];
-
-			write(1, &z, 1);
-			count++;
-		}
-	}
-	return (count);
+	characters_added = buffer->length - initial_length;
+	return (characters_added);
 }
