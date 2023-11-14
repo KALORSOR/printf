@@ -1,15 +1,13 @@
 # printf
-printf project repo by DiyaGariba and KALORSOR
-ALX cohort 1 blended
+
 printf project by DiyaGariba and KALORSOR
 of ALX cohort 1 blended
 
-Requirements
+#Requirements
 
-General
+#General
 
 Allowed editors: vi, vim, emacs
-
 All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
 All your files should end with a new line
 A README.md file, at the root of the folder of the project is mandatory
@@ -21,10 +19,11 @@ The prototypes of all your functions should be included in your header file call
 Don’t forget to push your header file
 All your header files should be include guarded
 Note that we will not provide the _putchar function for this project
-GitHub
+
+#GitHub
 There should be one project repository per group. The other members do not fork the project to ensure only one of the team has the repository in their github account otherwise you risk scoring 0%
 
-More Info
+#More Info
 Authorized functions and macros
 write (man 2 write)
 malloc (man 3 malloc)
@@ -33,10 +32,10 @@ va_start (man 3 va_start)
 va_end (man 3 va_end)
 va_copy (man 3 va_copy)
 va_arg (man 3 va_arg)
-Compilation
+
+#Compilation
 Your code will be compiled this way:
 $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c
 As a consequence, be careful not to push any c file containing a main function in the root directory of your project (you could have a test folder containing all your tests files including main functions)
 Our main files will include your main header file (main.h): #include main.h
 You might want to look at the gcc flag -Wno-format when testing with your _printf and the standard printf.
->>>>>>> 7419d89b699c2015c1b967b32d6eb3891b61b72b
