@@ -2,18 +2,18 @@
 
 /**
  * create_char - appends a character to the string buffer
- * @type: arguments list
+ * @args: arguments list
  * @buffer: string buffer to store the result
  * @spec:  pointer to a format specifier
  *
  * Return: 1, the character appended to the string buffer
  */
-int create_char(const format_specifier *spec, va_list type,
+int create_char(const format_specifier *spec, va_list args,
 				string_buffer *buffer)
 {
 	int characters_added;
 	size_t initial_length;
-	char ch = va_arg(type, int);
+	char ch = va_arg(args, int);
 
 	initial_length = buffer->length;
 
@@ -37,15 +37,15 @@ int create_char(const format_specifier *spec, va_list type,
 /**
  * create_string - appends a string to the string buffer
  * @spec: format specifier information
- * @type: the arguments list
+ * @args: the arguments list
  * @buffer: the string buffer to store the result
  *
  * Return: the number of characters appended to the string @buffer
  */
-int create_string(const format_specifier *spec, va_list type,
+int create_string(const format_specifier *spec, va_list args,
 				  string_buffer *buffer)
 {
-	char *str = va_arg(type, char *);
+	char *str = va_arg(args, char *);
 	int characters_added, len, i;
 	size_t initial_length;
 	format_specifier *tmp_spec = (format_specifier *)spec;
@@ -60,7 +60,7 @@ int create_string(const format_specifier *spec, va_list type,
 		if (spec->precision)
 		{
 			len = (spec->precision > len) ? len : spec->precision;
-			/* check for width (initial) when precision is also given */
+			
 			if (spec->width && !spec->minus_flag)
 				handle_width(tmp_spec, buffer, len);
 			for (i = 0; i < len; i++)
@@ -81,7 +81,7 @@ int create_string(const format_specifier *spec, va_list type,
 
 /**
  * create_percent - appends the percentage to the string buffer
- * @type: arguments list
+ * @args: arguments list
  * @buffer: string buffer to store the result
  * @spec:  pointer to a format specifier
  *
@@ -89,7 +89,7 @@ int create_string(const format_specifier *spec, va_list type,
  * a single percent character '%' has been appended to the string buffer
  */
 int create_percent(__attribute__((unused)) const format_specifier *spec,
-				   __attribute__((unused)) va_list type, string_buffer *buffer)
+				   __attribute__((unused)) va_list args, string_buffer *buffer)
 {
 	append_char(buffer, '%');
 
