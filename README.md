@@ -1,4 +1,6 @@
 # printf
+printf project repo by DiyaGariba and KALORSOR
+ALX cohort 1 blended
 printf project by DiyaGariba and KALORSOR
 of ALX cohort 1 blended
 
@@ -37,3 +39,4 @@ $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c
 As a consequence, be careful not to push any c file containing a main function in the root directory of your project (you could have a test folder containing all your tests files including main functions)
 Our main files will include your main header file (main.h): #include main.h
 You might want to look at the gcc flag -Wno-format when testing with your _printf and the standard printf.
+>>>>>>> 7419d89b699c2015c1b967b32d6eb3891b61b72b
