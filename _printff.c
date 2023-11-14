@@ -1,19 +1,19 @@
 #include "main.h"
 
 /**
- *printing_char - prints a char
- *@argue: list of arguements
- *@buffer: buffer array to handle char print
- *@flags: calculate active flags
- *@width: Width
- *@precision: specification of precision
+ *printin_char - prints a char
+ *@arg: list of arguements
+ *@buf: buffer array to handle char print
+ *@flgs: calculate active flags
+ *@wid: Width
+ *@prs: specification of precision
  *@size: size specifier
  *
  * Return: number of chars printed
  */
-int printing_char(va_list argue, char buffer[], int flags, int width, int precision, int size)
+int printin_char(va_list arg, char buf[], int flgs, int wid, int prs, int size)
 {
-	char c = va_arg(argue, int);
+	char c = va_arg(arg, int);
 
-	return (handle_write_char(c, buffer, flags, width, precision, size));
+	return (handle_write_char(c, buf, flgs, wid, prs, size));
 }
