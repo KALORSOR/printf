@@ -1,17 +1,17 @@
 #include "main.h"
 /**
-* print_pointer - prints an hexgecimal number.
-* @val: arguments.
+* print_pointer - prints a hexadecimal number.
+* @args: arguments.
 * Return: counter.
 */
-int print_pointer(va_list val)
+int print_pointer(va_list args)
 {
 void *p;
 char *s = "(nil)";
 long int x;
 int y;
 int i;
-p = va_arg(val, void*);
+p = va_arg(args, void*);
 if (p == NULL)
 {
 for (i = 0; s[i] != '\0'; i++)
