@@ -1,14 +1,14 @@
 #include "main.h"
 /**
 * print_s - print a string.
-* @val: argumen t.
-* Return: the length of the string.
+* @args_list: arguments.
+* Return: string lenght.
 */
-int print_s(va_list val)
+int print_s(va_list args_list)
 {
 char *s;
 int i, len;
-s = va_arg(val, char *);
+s = va_arg(args_list, char *);
 if (s == NULL)
 {
 s = "(null)";
