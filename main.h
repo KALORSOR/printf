@@ -14,7 +14,8 @@ typedef struct format
 {
 char *ph;
 int (*function)();
-} convert;
+}
+convert;
 int *_strcpy(char *dest, char *src);
 int print_pointer(va_list val);
 int print_unsigned(va_list args);
