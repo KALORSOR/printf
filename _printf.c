@@ -1,28 +1,43 @@
 #include "main.h"
-
 /**
- * _printf - function to prints a formatted string to stdout
- * @format: the formatted string
- *
- * Return: the number of characters printed to stdout,
- * else return -1 if @format is NULL
- */
-int _printf(const char *format, ...)
+* _printf - is a function that selects the correct function to print.
+* @format: identifier to look for.
+* Return: the length of the string.
+*/
+int _printf(const char * const format, ...)
 {
-	int characters_printed;
-	string_buffer buffer;
-	va_list type;
-
-	if (format == NULL)
-		return (-1); /* invalid format */
-
-	va_start(type, format);
-
-	
-	init_string_buffer(&buffer);
-
-	characters_printed = custom_printf(&buffer, format, type);
-
-	va_end(type);
-	return (characters_printed);
+convert p[] = {
+{"%s", print_s}, {"%c", print_c},
+{"%%", print_37},
+{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
+{"%R", print_rot13}, {"%b", print_bin},
+{"%u", print_unsigned},
+{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
+{"%S", print_exc_string}, {"%p", print_pointer}
+};
+va_list args;
+int i = 0, j, length = 0;
+va_start(args, format);
+if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+return (-1);
+Here:
+while (format[i] != '\0')
+{
+j = 13;
+while (j >= 0)
+{
+if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
+{
+length += p[j].function(args);
+i = i + 2;
+goto Here;
+}
+j--;
+}
+_putchar(format[i]);
+length++;
+i++;
+}
+va_end(args);
+return (length);
 }
