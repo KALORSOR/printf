@@ -1,6 +1,7 @@
 #include "main.h"
 /**
-* _printf - variadic function type that iterates through format specifiers to print.
+* _printf - variadic function type that iterates
+* through format specifiers to print.
 * @format: identifier to look for and print.
 * Return: string lenght.
 */
