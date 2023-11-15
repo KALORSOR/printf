@@ -1,8 +1,8 @@
 #include "main.h"
 /**
-* _printf - is a function that selects the correct function to print.
-* @format: identifier to look for.
-* Return: the length of the string.
+* _printf - variadic function type that iterates through format specifiers to print.
+* @format: identifier to look for and print.
+* Return: string lenght.
 */
 int _printf(const char * const format, ...)
 {
