@@ -18,7 +18,7 @@ _**General**_
 
 **_GitHub_**
 
-_There should be one project repository per group. The other members do not fork the project to ensure only one of the team has the repository in their github account otherwise you risk scoring 0%_
+_**There should be one project repository per group. The other members do not fork the project to ensure only one of the team has the repository in their github account otherwise you risk scoring 0%**_
 
 
 _@authors_ _**KALORSOR**_ & _**DiyaGariba**_
