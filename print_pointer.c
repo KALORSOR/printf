@@ -23,6 +23,6 @@ return (i);
 a = (unsigned long int)p;
 _putchar('0');
 _putchar('x');
-y = print_hex_extra2(a);
+y = print_hex_extra(a);
 return (y + 2);
 }
