@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-* print_pointer - prints a hexadecimal number.
+* print_pointer - prints in hexadecimal form.
 * @args: arguments.
 * Return: counter.
 */
@@ -12,17 +12,18 @@ long int a;
 int y;
 int i;
 p = va_arg(args, void*);
+
 if (p == NULL)
 {
 for (i = 0; s[i] != '\0'; i++)
 {
-_putchar(s[i]);
+write(1, &s[i], 1);
 }
 return (i);
 }
+write(1, "0x", 2);
 a = (unsigned long int)p;
-_putchar('0');
-_putchar('x');
 y = print_hex_extra(a);
 return (y + 2);
 }
+
