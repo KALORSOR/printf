@@ -39,4 +39,7 @@ int print_s(va_list val);
 int _putchar(char c);
 int _printf(const char *format, ...);
 
+int print_hex_extra(unsigned long int n);
+int print_pointer(va_list args);
+
 #endif
