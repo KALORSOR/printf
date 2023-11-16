@@ -54,5 +54,7 @@ int get_flags(const char *format, int *i);
 #define S_LONG 2
 #define S_SHORT 1
 
+#define UNUSED(x) (void)(x)
+#define BUFF_SIZE 1024
 
 #endif
