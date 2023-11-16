@@ -1,4 +1,8 @@
 #include "main.h"
+#include <unistd.h>
+#include <stdarg.h>
+
+
 /**
 * print_pointer - prints in hexadecimal form.
 * @args: arguments.
